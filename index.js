@@ -52,11 +52,13 @@ app.post('/test', function (req, res) {
     method: 'POST',
     json: {
       "file_name": "anychart.png",
+      "file_type": "png",
       "data": "var chart = anychart.pie(); chart.data([10, 20, 8, 5, 12, 9]); chart.container('container'); chart.draw();",
       "data_type": "javascript",
-      "response_type": "file"
+      "response_type": "base64"
     }
   }, function(error, response, body) {
+    console.log(body);
     request({
       url: 'https://api.telegram.org/bot694364183:AAGemWjJLnZKryELrdjjoBtFLuYvmWW4zIM/sendPhoto',
       method: 'POST',
