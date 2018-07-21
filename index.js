@@ -30,6 +30,7 @@ app.get('/status', function (req, res) {
 
 app.post('/test', function (req, res) {
   var message = req.body.message;
+
   // axios
   //     .post(
   //         'https://api.telegram.org/bot694364183:AAGemWjJLnZKryELrdjjoBtFLuYvmWW4zIM/sendMessage',
@@ -46,7 +47,6 @@ app.post('/test', function (req, res) {
   //       res.end('Error :' + err);
   //     });
 
-
   request({
     url: 'https://report.anychart.com/raster-image',
     method: 'POST',
@@ -55,10 +55,10 @@ app.post('/test', function (req, res) {
       "file_type": "png",
       "data": "var chart = anychart.pie(); chart.data([10, 20, 8, 5, 12, 9]); chart.container('container'); chart.draw();",
       "data_type": "javascript",
-      "response_type": "base64"
+      "response_type": "file"
     }
   }, function(error, response, body) {
-    console.log(body);
+    console.log(body.data);
     request({
       url: 'https://api.telegram.org/bot694364183:AAGemWjJLnZKryELrdjjoBtFLuYvmWW4zIM/sendPhoto',
       method: 'POST',
@@ -67,7 +67,7 @@ app.post('/test', function (req, res) {
         photo: body.data
       }
     }, function(error, response, body) {
-      console.log('Message posted');
+      console.log(error, 'Message posted');
       res.end('ok')
     });
   });
@@ -84,10 +84,10 @@ app.get('/chart', function(req, res) {
       "file_type": "png",
       "data": "var chart = anychart.pie(); chart.data([10, 20, 8, 5, 12, 9]); chart.container('container'); chart.draw();",
       "data_type": "javascript",
-      "response_type": "base64"
+      "response_type": "file"
     }
   }, function(error, response, body){
-    console.log('body', body.data);
+    console.log('body', body);
   });
 });
 
