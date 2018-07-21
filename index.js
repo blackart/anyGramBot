@@ -18,17 +18,13 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({parameterLimit: 100000, limit: '50mb', extended: true}));
 
-
 app.post('/');
-
 
 app.get('/status', function (req, res) {
   res.send('ok');
 });
 
-
 app.listen(program.port, function () {
-  // logger.info('Export server listening on port ' + program.port + '!')
   console.log('Export server listening on port ' + program.port + '!')
 });
 
