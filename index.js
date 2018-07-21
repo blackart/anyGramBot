@@ -58,13 +58,13 @@ app.post('/test', function (req, res) {
       "response_type": "file"
     }
   }, function(error, response, body) {
-    console.log(body.data);
+    console.log(body, message.chat.id);
     request({
       url: 'https://api.telegram.org/bot694364183:AAGemWjJLnZKryELrdjjoBtFLuYvmWW4zIM/sendPhoto',
       method: 'POST',
       json: {
         chat_id: message.chat.id,
-        photo: body.data
+        photo: body
       }
     }, function(error, response, body) {
       console.log(error, 'Message posted');
